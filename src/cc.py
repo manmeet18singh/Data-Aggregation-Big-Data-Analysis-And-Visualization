@@ -3,7 +3,13 @@ import json
 import io
 import gzip
 import s3fs
+import nltk
+from nltk.stem import PorterStemmer
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.corpus import stopwords
 from bs4 import BeautifulSoup
+
+stop_words = set(stopwords.words('english'))
 
 # Domains to search through
 domains = ['espn.com', 'foxsports.com', 'cbssports.com', 'sportingnews.com', 'bleacherreport.com']
@@ -63,6 +69,18 @@ def download_page(record):
     
     return data
 
+def check_word(word):
+    bad = ["<", "=", "\\", ":", "_", ".", "#", "@", "(", ")", "{", "}", ";", "[", "]", "\"", 
+           "?", ">", ",", "/", "--", "*", "+", "||", "&&", "|"]
+    for char in bad:
+        if char in word:
+            return False
+    if word in stop_words:
+        return False
+
+    return True
+    
+
 def main():
 
     ### PROCESSING STEP 1 - Grab 100 articles from each domain ###
@@ -78,7 +96,12 @@ def main():
     #         print("Wrote " + domain + " article " + str(i))
 
     ### PROCESSING STEP 2 - Drop header, turn into valid HTML, and snag text from beautiful soup ###
-    with open('cbssports.com.txt', "r") as f:
+
+    ps = PorterStemmer()
+
+    all_words = []
+
+    with open('sportingnews.com.txt', "r") as f:
         for line in f:
             what = line.strip('b\'')
             huh = what.strip()
@@ -89,15 +112,26 @@ def main():
                 html = html.replace('\n','')
                 html.strip(" ")
                 html.strip("\t")
-                sort_of_text = get_text_from_html(html)
-                # print(sort_of_text)
-                # f = open('cbssports.txt', "a")
-                # f.write(sort_of_text)
-                # f.close()
 
+                # stem words
+                words = html.split()
+                for word in words:
+                    ps.stem(word)
+                    all_words.append(word)
+     
+        f.close()
+    
+    good_words = []
+    # Filter/write out words to file
+    for word in all_words:
+        if check_word(word):
+            good_words.append(word)
 
-
-
-
+    good = " ".join(good_words)
+    f = open("sportingnews_words.txt", "w+")
+    f.write(good)
+    f.close()
+    
+                
 if __name__== "__main__":
   main()

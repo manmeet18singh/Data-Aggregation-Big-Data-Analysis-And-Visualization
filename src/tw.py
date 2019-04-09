@@ -49,16 +49,33 @@ def limitHandler(cursor, filename, firstWrite):
             time.sleep(15*60)
 
 def main():
+    
     searchQuery = {'Basketball OR #basketball OR NBA OR #nba OR March Madness OR #marchmadness' : '../data/tw/basketball.csv', 
                 'Baseball OR #baseball OR MLB OR #mlb OR Opening Day OR #openingday' : '../data/tw/baseball.csv', 
                 'Hockey OR #hockey OR NHL OR #nhl OR Stanley Cup OR #stanleycup' : '../data/tw/hockey.csv', 
                 'Football OR #football OR NFL OR #nfl OR NFL Draft OR #nfldraft' : '../data/tw/football.csv', 
                 'Cricket OR #cricket OR IPL OR #ipl' : '../data/tw/cricket.csv'}
-
+                    
     # search on Twitter with Keywords, retrieve tweets
+
     for query,path in searchQuery.items():
         limitHandler(tweepy.Cursor(api.search, q = query, tweet_mode = 'extended', lang = 'en').items(), os.path.join(path), False)
         print("done with : " + query)
+    
+    allPaths = {'../data/tw/basketTweet.txt' : '../data/tw/basketball.csv', 
+                '../data/tw/baseTweet.txt': '../data/tw/baseball.csv', 
+                '../data/tw/hockeyTweet.txt' : '../data/tw/hockey.csv', 
+                '../data/tw/footTweet.txt' : '../data/tw/football.csv', 
+                '../data/tw/cricTweet.txt' : '../data/tw/cricket.csv'}
+
+    for txtFile,csvFile in allPaths.items():
+        with open(os.path.join(csvFile)) as csvTweet:  
+            reader = csv.DictReader(csvTweet)
+            with open(os.path.join(txtFile), 'w') as tweetTxt:
+                for tweet in reader:
+                    tweetTxt.write(tweet['Text'].replace('\n', "") + '\n')
+                tweetTxt.close()
+        csvTweet.close()
 
 
 if __name__ == "__main__":

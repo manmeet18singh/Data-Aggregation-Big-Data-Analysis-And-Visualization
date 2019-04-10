@@ -56,8 +56,8 @@ def main():
                 'Football OR #football OR NFL OR #nfl OR NFL Draft OR #nfldraft' : '../data/tw/football.csv', 
                 'Cricket OR #cricket OR IPL OR #ipl' : '../data/tw/cricket.csv'}
                     
+                    
     # search on Twitter with Keywords, retrieve tweets
-
     for query,path in searchQuery.items():
         limitHandler(tweepy.Cursor(api.search, q = query, tweet_mode = 'extended', lang = 'en').items(), os.path.join(path), False)
         print("done with : " + query)

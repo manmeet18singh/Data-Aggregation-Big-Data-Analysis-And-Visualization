@@ -2,149 +2,68 @@ from nytimesarticle import articleAPI
 import csv
 import os.path
 import time
+import requests
+from bs4 import BeautifulSoup
 
-api = articleAPI('aruVhl4pt0AUEOnD9LR7V1s4p7wavw9H')
+def collectUrls(query, filename):
+    api = articleAPI('aruVhl4pt0AUEOnD9LR7V1s4p7wavw9H')
+    # Collect articles with keyword
+    # basketballArt = None
+    nytArt = None
+    # basketballTxt = []
+    urls = []
 
-# # Collect articles with sport keyword
-# sportArt = None
-# sportCsv = []
-
-# for pageNum in range(0,70):
-#     sportArt = api.search(q = 'Sports', 
-#                         fq = 'The New York Times', page = pageNum)
-#     print("loading page: %d" % pageNum)
-#     for article in sportArt['response']['docs']:
-#         sportCsv.append(article['web_url'])
-#         # save sport article data to csv and write to csv in Data/nyt
-#     fileName = os.path.join('../Data/nyt/sport.csv')
-#     with open(fileName, 'w') as csvFile:
-#         writer = csv.writer(csvFile)
-#         for url in sportCsv: 
-#             writer.writerow([url])
-#     csvFile.close()
-#     print("going to sleep")
-#     time.sleep(6)
-
-
-# print("\n\n\nDONE COLLECTING SPORT\n\n\n")
-##########################################################################################################################
-
-# collect articles with Basketball Keyword
-basketballArt = None
-basketballCsv = []
-
-for pageNum in range(0,70):
-    basketballArt = api.search(q = 'Basketball', 
-                        fq = 'The New York Times', page = pageNum)
-    print("loading page: %d" % pageNum)
-    for article in basketballArt['response']['docs']:
-        basketballCsv.append(article['web_url'])
-        # save sport article data to csv and write to csv in Data/nyt
-    fileName = os.path.join('../Data/nyt/basketball.csv')
-    with open(fileName, 'w') as csvFile:
-        writer = csv.writer(csvFile)
-        for url in basketballCsv: 
-            writer.writerow([url])
-    csvFile.close()
-    print("going to sleep")
-    time.sleep(6)
+    for pageNum in range(0,70):
+        nytArt = api.search(q = query, 
+                            fq = 'The New York Times', page = pageNum)
+        print("loading page: %d" % pageNum)
+        
+        for article in nytArt['response']['docs']:
+            urls.append(article['web_url'])
+            # save sport article data to txt and write to txt in Data/nyt
+            # fileName = os.path.join('../Data/nyt/basketball.txt')
+        with open(os.path.join(filename), 'w') as txtFile:
+            for url in urls: 
+                txtFile.write(url + '\n')
+        txtFile.close()
+        print("going to sleep")
+        time.sleep(6)
+    print("\n\n\n ============ DONE COLLECTING " + query + " ============\n\n\n")
 
 
-print("\n\n\nDONE COLLECTING BASKETBALL\n\n\n")
-##########################################################################################################################
-
-# collect articles with Baseball Keyword
-baseballArt = None
-baseballCsv = []
-
-for pageNum in range(0,70):
-    baseballArt = api.search(q = 'Baseball', 
-                        fq = 'The New York Times', page = pageNum)
-    print("loading page: %d" % pageNum)
-    for article in baseballArt['response']['docs']:
-        baseballCsv.append(article['web_url'])
-        # save sport article data to csv and write to csv in Data/nyt
-    fileName = os.path.join('../Data/nyt/baseball.csv')
-    with open(fileName, 'w') as csvFile:
-        writer = csv.writer(csvFile)
-        for url in baseballCsv: 
-            writer.writerow([url])
-    csvFile.close()
-    print("going to sleep")
-    time.sleep(6)
+def collectArticles(readname, writename):
+    with open(os.path.join(readname)) as readFile:  
+        for line in readFile:
+            
+            # TODO: READ LINE BY LINE AND MAKE A URL REQUEST AND GRAB THE ARTICLE TEXT USING BEAUTIFULL SOUP. 
+            # PASS INTO FUNCTIONS TO CLEAN UP STOP WORDS AND STEM WORDS
+            print(line)
+        # with open(os.path.join(writename), 'w') as article:
+        #     for tweet in reader:
+        #         print(tweet[])
+        #         # tweetTxt.write(tweet['Text'].replace('\n', "") + '\n')
+        #     tweetTxt.close()
+    readFile.close()
 
 
-print("\n\n\nDONE COLLECTING BASEBALL\n\n\n")
-##########################################################################################################################
+def main():
+    queryPath = { 'Basketball' : '../data/nyt/basketball.txt',
+                    'Baseball' : '../data/nyt/baseball.txt', 
+                    'Hockey' : '../data/nyt/hockey.txt', 
+                    'Football' : '../data/nyt/football.txt', 
+                    'Cricket' : '../data/nyt/cricket.txt'}
 
-# collect articles with Hockey Keyword
-hockeyArt = None
-hockeyCsv = []
+    allPaths = {'../data/nyt/basketArt.txt' : '../data/nyt/basketball.txt', 
+                '../data/nyt/baseArt.txt': '../data/nyt/baseball.txt', 
+                '../data/nyt/hockeyArt.txt' : '../data/nyt/hockey.txt', 
+                '../data/nyt/footArt.txt' : '../data/nyt/football.txt', 
+                '../data/nyt/cricArt.txt' : '../data/nyt/cricket.txt'}
 
-for pageNum in range(0,70):
-    hockeyArt = api.search(q = 'Hockey', 
-                        fq = 'The New York Times', page = pageNum)
-    print("loading page: %d" % pageNum)
-    for article in hockeyArt['response']['docs']:
-        hockeyCsv.append(article['web_url'])
-        # save sport article data to csv and write to csv in Data/nyt
-    fileName = os.path.join('../Data/nyt/hockey.csv')
-    with open(fileName, 'w') as csvFile:
-        writer = csv.writer(csvFile)
-        for url in hockeyCsv: 
-            writer.writerow([url])
-    csvFile.close()
-    print("going to sleep")
-    time.sleep(6)
+    # for query, path in queryPath.items():
+        # collectUrls(query, path)
 
+    for write, read in allPaths.items():
+        collectArticles(read, write)
 
-print("\n\n\nDONE COLLECTING HOCKEY\n\n\n")
-##########################################################################################################################
-
-# collect articles with Football Keyword
-footballArt = None
-footballCsv = []
-
-for pageNum in range(0,70):
-    footballArt = api.search(q = 'Football', 
-                        fq = 'The New York Times', page = pageNum)
-    print("loading page: %d" % pageNum)
-    for article in footballArt['response']['docs']:
-        footballCsv.append(article['web_url'])
-        # save sport article data to csv and write to csv in Data/nyt
-    fileName = os.path.join('../Data/nyt/football.csv')
-    with open(fileName, 'w') as csvFile:
-        writer = csv.writer(csvFile)
-        for url in footballCsv: 
-            writer.writerow([url])
-    csvFile.close()
-    print("going to sleep")
-    time.sleep(6)
-
-
-print("\n\n\nDONE COLLECTING FOOTBALL\n\n\n")
-##########################################################################################################################
-
-# collect articles with Soccer Keyword
-soccerArt = None
-soccerCsv = []
-
-for pageNum in range(0,70):
-    soccerArt = api.search(q = 'soccer', 
-                        fq = 'The New York Times', page = pageNum)
-    print("loading page: %d" % pageNum)
-    for article in soccerArt['response']['docs']:
-        soccerCsv.append(article['web_url'])
-        # save sport article data to csv and write to csv in Data/nyt
-    fileName = os.path.join('../Data/nyt/soccer.csv')
-    with open(fileName, 'w') as csvFile:
-        writer = csv.writer(csvFile)
-        for url in soccerCsv: 
-            writer.writerow([url])
-    csvFile.close()
-    print("going to sleep")
-    time.sleep(6)
-
-
-print("\n\n\nDONE COLLECTING SOCCER\n\n\n")
-##########################################################################################################################
+if __name__ == "__main__":
+    main()

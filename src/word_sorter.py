@@ -1,8 +1,13 @@
 # Reads in a word counted file and sorts it (ascending)
 
+import nltk
+from nltk.corpus import stopwords
+
+stop_words = set(stopwords.words('english'))
+
 def main():
     word_tups = []
-    with open('../data/cc/sporting/sportingnews_wordCount.txt', "r") as f:
+    with open('../data/tw/football_wordCount_sorted_noNums.txt', "r") as f:
         for line in f:
             text = line.split()
             word = text[0]
@@ -14,9 +19,10 @@ def main():
     sorted_words = sorted(word_tups, key=lambda x: x[1])
     sorted_words.reverse()
 
-    file = open("../data/cc/sporting/sportingnews_wordCount_sorted.txt", "w")
+    file = open("../data/tw/football_wordCount_sorted_noNums.txt", "w")
     for tup in sorted_words:
-        file.write(tup[0] + " " + str(tup[1]) + "\n")
+        if tup[0] not in stop_words:
+            file.write(tup[0] + " " + str(tup[1]) + "\n")
     file.close()
 
 if __name__== "__main__":

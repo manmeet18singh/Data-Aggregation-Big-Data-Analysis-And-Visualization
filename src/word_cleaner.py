@@ -47,8 +47,8 @@ def main():
     file.close()
 
 if __name__== "__main__":
-  removeNums("../data/cc/bleacher/bleacher_wordCount_sorted.txt")
-  removeNums("../data/cc/cbs/cbs_wordCount_sorted.txt")
-  removeNums("../data/cc/espn/espn_wordCount_sorted.txt")
-  removeNums("../data/cc/fox/fox_wordCount_sorted.txt")
-  removeNums("../data/cc/sporting/sportingnews_wordCount_sorted.txt")
+  removeNums("../data/tw/baseball_wordCount_sorted.txt")
+  removeNums("../data/tw/basketball_wordCount_sorted.txt")
+  removeNums("../data/tw/cricket_wordCount_sorted.txt")
+  removeNums("../data/tw/football_wordCount_sorted.txt")
+  removeNums("../data/tw/hockey_wordCount_sorted.txt")

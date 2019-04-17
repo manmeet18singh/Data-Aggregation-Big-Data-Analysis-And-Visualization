@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Lab 2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="m_tsq.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- d3 js  -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
+
+    <!-- css  -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">
+            <img src="m_t.png" width="108" height="37.3" class="d-inline-block mr-3">
+            LAB2: DATA AGGREGATION, BIG DATA ANALYSIS AND VISUALIZATION
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Twitter
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Basketball</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Hockey</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Football</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Cricket</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Baseball</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown ml-auto">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        New York Times
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Basketball</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Hockey</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Football</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Cricket</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Baseball</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown ml-auto">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Common Crawl
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Bleacher Report</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">CBS Sports</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">ESPN</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Fox Sports</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Sporting News</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <img src="cic.png" class="img-fluid mx-auto d-block">
+        <!-- <script>
+            var req = new XMLHttpRequest();
+            req.open('POST', '/getPrediction', true);
+            req.setRequestHeader("Content-type", "application/json");
+            jsonToSend = JSON.stringify(jsonToSend);
+            req.send(jsonToSend);
+            req.onload = function () {
+                var response = JSON.parse(req.responseText);
+                console.log(response.output);
+                document.getElementById('out').value = response.output;
+            }
+        </script> -->
+        
+        
+
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <!-- script.js -->
+    <script src="script.js"></script>
+</body>
+
+</html>

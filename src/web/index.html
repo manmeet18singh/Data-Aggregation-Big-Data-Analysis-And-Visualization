@@ -20,6 +20,10 @@
 
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+
+    <!-- script.js -->
+    <script type="module" src="script.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -32,77 +36,96 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         Twitter
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Basketball</a>
+                        <a class="dropdown-item">Basketball</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Hockey</a>
+                        <a class="dropdown-item">Hockey</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Football</a>
+                        <a class="dropdown-item">Football</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Cricket</a>
+                        <a class="dropdown-item">Cricket</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Baseball</a>
+                        <a class="dropdown-item">Baseball</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown ml-auto">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         New York Times
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Basketball</a>
+                        <a class="dropdown-item">Basketball</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Hockey</a>
+                        <a class="dropdown-item">Hockey</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Football</a>
+                        <a class="dropdown-item">Football</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Cricket</a>
+                        <a class="dropdown-item">Cricket</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Baseball</a>
+                        <a class="dropdown-item">Baseball</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown ml-auto">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         Common Crawl
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Bleacher Report</a>
+                        <a class="dropdown-item">Bleacher Report</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">CBS Sports</a>
+                        <a class="dropdown-item">CBS Sports</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">ESPN</a>
+                        <a class="dropdown-item">ESPN</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Fox Sports</a>
+                        <a class="dropdown-item">Fox Sports</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Sporting News</a>
+                        <a class="dropdown-item">Sporting News</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container-fluid">
-        <img src="cic.png" class="img-fluid mx-auto d-block">
-        <!-- <script>
-            var req = new XMLHttpRequest();
-            req.open('POST', '/getPrediction', true);
-            req.setRequestHeader("Content-type", "application/json");
-            jsonToSend = JSON.stringify(jsonToSend);
-            req.send(jsonToSend);
-            req.onload = function () {
-                var response = JSON.parse(req.responseText);
-                console.log(response.output);
-                document.getElementById('out').value = response.output;
+        <div id = "cloud"></div>
+        <div id = "cocloud"></div>
+        <script>
+            var lang = '';
+
+            $(".dropdown-menu li a").click(function () {
+                // $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+                // $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+                lang = $(this).text();
+                console.log(lang)
+            });
+
+            function run() {
+                //grab code inside textarea
+                var code = document.getElementById('code').value;
+                if (lang == '') {
+                    alert("Please select Language");
+                } else if (code == '') {
+                    alert("Please input your Code")
+                } else {
+                    var jsonToSend = {
+                        "language": lang,
+                        "code": code
+                    };
+                    var req = new XMLHttpRequest();
+                    req.open('POST', '/compAndRun', true);
+                    req.setRequestHeader("Content-type", "application/json");
+                    jsonToSend = JSON.stringify(jsonToSend);
+                    req.send(jsonToSend);
+                    req.onload = function () {
+                        var response = JSON.parse(req.responseText);
+                        document.getElementById('out').value = response.output;
+                    }
+                }
             }
-        </script> -->
-        
-        
-
-
+        </script>
     </div>
 
     <!-- Optional JavaScript -->
@@ -116,9 +139,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-
-    <!-- script.js -->
-    <script src="script.js"></script>
 </body>
 
 </html>

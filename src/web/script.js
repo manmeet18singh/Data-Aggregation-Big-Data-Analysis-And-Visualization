@@ -16,8 +16,9 @@ app.use(bodyParser.urlencoded({
 
 app.post("/grabFile", (req, res) =>{
     var path = req.body.file;
+    console.log(path);
     var text = fs.readFileSync(path).toString('utf-8');
-    console.log(text);
+    // console.log(text);
 })
 
 

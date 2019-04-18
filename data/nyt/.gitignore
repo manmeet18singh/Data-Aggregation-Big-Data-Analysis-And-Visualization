@@ -1,5 +1,4 @@
-# Ignore everything in this directory
-*
-# Except this file
-!.gitignore
-!word_count
+clean/*
+unclean/*
+urls/*
+clean.zip

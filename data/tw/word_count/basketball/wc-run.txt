@@ -1,4 +1,3 @@
-https 22146
 march 19523
 madness 19407
 marchmadness 4509
@@ -16,8 +15,6 @@ finalfour 1525
 game 1408
 us 1177
 one 1174
-like 1158
-get 1149
 best 1105
 year 1104
 team 1096
@@ -29,7 +26,6 @@ college 930
 games 897
 round 885
 vote 876
-today 874
 tech 850
 last 846
 first 839

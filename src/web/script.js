@@ -14,11 +14,13 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.post("/grabFile", (req, res) =>{
+app.post("/grabFile", (req, res) => {
     var path = req.body.file;
-    console.log(path);
     var text = fs.readFileSync(path).toString('utf-8');
-    // console.log(text);
+    var jsonToSend = {
+        "text": text
+    }
+    res.send(JSON.stringify(jsonToSend));
 })
 
 

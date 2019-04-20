@@ -118,10 +118,12 @@
                         $("#cloud").empty();
                     });
                 });
+                
                 //grab path to send to server
                 var jsonToSend = {
                     "file": path,
                 };
+
                 var req = new XMLHttpRequest();
                 req.open('POST', '/grabFile', true);
                 req.setRequestHeader("Content-type", "application/json");
@@ -160,7 +162,6 @@
                 var w = $(document).width();
                 var h = $(document).height();
                 var fill = d3.scale.category20();
-
                 var word_entries = d3.entries(top);
 
                 var wordScale = d3.scale.linear()
@@ -170,7 +171,6 @@
                     .range([10, 100]);
 
                 d3.layout.cloud().size([w, h])
-                    // .timeInterval(20)
                     .words(word_entries)
                     .fontSize(function (d) {
                         return wordScale(+d.value);
@@ -179,7 +179,7 @@
                         return d.key;
                     })
                     .rotate(function () {
-                        return ~~(Math.random() * 2) * 90;
+                        return ~~(Math.random()) * 90;
                     })
                     .font("Impact")
                     .on("end", draw)
@@ -212,7 +212,6 @@
                 d3.layout.cloud().stop();
             }
         </script>
-
     </div>
 
     <!-- Optional JavaScript -->

@@ -12,7 +12,6 @@ game 87694
 team 86037
 two 85654
 last 82700
-would 79831
 baseball 78866
 first 78655
 new 78104
@@ -239,12 +238,11 @@ season 1968
 nba 1964
 players 1942
 first 1931
-years 1907
 get 1892
 season 1867
 news 1867
 finals 1844
-year 1820
+year 3727
 winning 1818
 win 1814
 tomorrow 1783

@@ -88,22 +88,24 @@ def cleanup(unclean, clean):
 
 def main():
     
-    searchQuery = {'Basketball OR #basketball OR NBA OR #nba OR March Madness OR #marchmadness' : '../data/tw/basketball.csv', 
-                'Baseball OR #baseball OR MLB OR #mlb OR Opening Day OR #openingday' : '../data/tw/baseball.csv', 
-                'Hockey OR #hockey OR NHL OR #nhl OR Stanley Cup OR #stanleycup' : '../data/tw/hockey.csv', 
-                'Football OR #football OR NFL OR #nfl OR NFL Draft OR #nfldraft' : '../data/tw/football.csv', 
-                'Cricket OR #cricket OR IPL OR #ipl' : '../data/tw/cricket.csv'}
+    searchQuery = {
+                'Basketball OR #basketball OR NBA OR #nba OR March Madness OR #marchmadness' : '../data/tw/tweet_csv/basketball.csv', 
+                'Baseball OR #baseball OR MLB OR #mlb OR Opening Day OR #openingday' : '../data/tw/tweet_csv/baseball.csv', 
+                'Hockey OR #hockey OR NHL OR #nhl OR Stanley Cup OR #stanleycup' : '../data/tw/tweet_csv/hockey.csv', 
+                'Football OR #football OR NFL OR #nfl OR NFL Draft OR #nfldraft' : '../data/tw/tweet_csv/football.csv', 
+                'Cricket OR #cricket OR IPL OR #ipl' : '../data/tw/tweet_csv/cricket.csv'
+                }
                     
     # search on Twitter with Keywords above, retrieve tweets
     for query,path in searchQuery.items():
         limitHandler(tweepy.Cursor(api.search, q = query, tweet_mode = 'extended', lang = 'en').items(), os.path.join(path), False)
         print("done with : " + query)
     
-    allPaths = {'../data/tw/basketTweet.txt' : '../data/tw/basketball.csv', 
-                '../data/tw/baseTweet.txt': '../data/tw/baseball.csv', 
-                '../data/tw/hockeyTweet.txt' : '../data/tw/hockey.csv', 
-                '../data/tw/footTweet.txt' : '../data/tw/football.csv', 
-                '../data/tw/cricTweet.txt' : '../data/tw/cricket.csv'}
+    allPaths = {'../data/tw/basketTweet.txt' : '../data/tw/tweet_csv/basketball.csv', 
+                '../data/tw/baseTweet.txt': '../data/tw/tweet_csv/baseball.csv', 
+                '../data/tw/hockeyTweet.txt' : '../data/tw/tweet_csv/hockey.csv', 
+                '../data/tw/footTweet.txt' : '../data/tw/tweet_csv/football.csv', 
+                '../data/tw/cricTweet.txt' : '../data/tw/tweet_csv/cricket.csv'}
 
     # save all the tweets as a txt
     for txtFile,csvFile in allPaths.items():

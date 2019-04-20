@@ -29,11 +29,11 @@ def search_domain(domain):
  
     record_list = []
     
-    print("[*] Trying target domain: " + domain)
+    print("Trying target domain: " + domain)
     
     for index in index_list:
         
-        print("[*] Trying index %s" % index)
+        print("Trying index " + str(index))
         
         cc_url  = "http://index.commoncrawl.org/CC-MAIN-%s-index?" % index
         cc_url += "url=%s&matchType=domain&output=json" % domain
@@ -45,11 +45,8 @@ def search_domain(domain):
             
             for record in records:
                 record_list.append(json.loads(record))
-            
-            print("[*] Added %d results." % len(records))
-            
     
-    print("[*] Found a total of %d hits." % len(record_list))
+    print("Found a total of " + str(len(record_list)) + " hits.")
     
     return record_list  
 
@@ -85,51 +82,51 @@ def main():
 
     ### PROCESSING STEP 1 - Grab 100 articles from each domain ###
 
-    # for domain in domains:
-    #     results = search_domain(domain)
-    #     for i in range(100):
-    #         file = str(domain) + ".txt"
-    #         f = open(file, "a")
-    #         f.write(str(download_page(results[i])))
-    #         f.write("\n\n\n")
-    #         f.close()
-    #         print("Wrote " + domain + " article " + str(i))
+    for domain in domains:
+        results = search_domain(domain)
+        # for i in range(100):
+        #     file = str(domain) + ".txt"
+        #     f = open(file, "a")
+        #     f.write(str(download_page(results[i])))
+        #     f.write("\n\n\n")
+        #     f.close()
+        #     print("Wrote " + domain + " article " + str(i))
 
     ### PROCESSING STEP 2 - Drop header, turn into valid HTML, and snag text from beautiful soup ###
 
-    ps = PorterStemmer()
+    # ps = PorterStemmer()
 
-    all_words = []
+    # all_words = []
 
-    with open('sportingnews.com.txt', "r") as f:
-        for line in f:
-            what = line.strip('b\'')
-            huh = what.strip()
-            doc_pos = huh.find('<!DOC')
-            # -1 because of the two newlines in txt file to seperate stuff
-            if doc_pos != -1:
-                html = huh[doc_pos:len(huh)]
-                html = html.replace('\n','')
-                html.strip(" ")
-                html.strip("\t")
+    # with open('sportingnews.com.txt', "r") as f:
+    #     for line in f:
+    #         what = line.strip('b\'')
+    #         huh = what.strip()
+    #         doc_pos = huh.find('<!DOC')
+    #         # -1 because of the two newlines in txt file to seperate stuff
+    #         if doc_pos != -1:
+    #             html = huh[doc_pos:len(huh)]
+    #             html = html.replace('\n','')
+    #             html.strip(" ")
+    #             html.strip("\t")
 
-                # stem words
-                words = html.split()
-                for word in words:
-                    ps.stem(word)
-                    all_words.append(word)
+    #             # stem words
+    #             words = html.split()
+    #             for word in words:
+    #                 ps.stem(word)
+    #                 all_words.append(word)
      
-        f.close()
+    #     f.close()
     
-    good_words = []
-    # Filter/write out words to file
-    for word in all_words:
-        if check_word(word):
-            good_words.append(word)
+    # good_words = []
+    # # Filter/write out words to file
+    # for word in all_words:
+    #     if check_word(word):
+    #         good_words.append(word)
 
-    good = " ".join(good_words)
-    f = open("sportingnews_words.txt", "w+")
-    f.write(good)
+    # good = " ".join(good_words)
+    # f = open("sportingnews_words.txt", "w+")
+    # f.write(good)
     f.close()
     
                 

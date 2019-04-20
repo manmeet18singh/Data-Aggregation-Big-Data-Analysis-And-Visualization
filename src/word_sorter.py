@@ -7,7 +7,7 @@ stop_words = set(stopwords.words('english'))
 
 def main():
     word_tups = []
-    with open('../data/tw/football_wordCount_sorted_noNums.txt', "r") as f:
+    with open('../data/nyt/wc-run.txt', "r") as f:
         for line in f:
             text = line.split()
             word = text[0]
@@ -19,7 +19,7 @@ def main():
     sorted_words = sorted(word_tups, key=lambda x: x[1])
     sorted_words.reverse()
 
-    file = open("../data/tw/football_wordCount_sorted_noNums.txt", "w")
+    file = open("../data/nyt/wc-run.txt", "w")
     for tup in sorted_words:
         if tup[0] not in stop_words:
             file.write(tup[0] + " " + str(tup[1]) + "\n")

@@ -81,6 +81,7 @@ def cleanup(unclean, clean):
     print("\n\n\n ============ DONE CLEANING " + clean + " ============\n\n\n")
 
 def main():
+    
     queryPath = {
                     'Basketball' : '../data/nyt/urls/basketball.txt',
                     'Baseball' : '../data/nyt/urls/baseball.txt', 
@@ -89,30 +90,31 @@ def main():
                     'Cricket' : '../data/nyt/urls/cricket.txt',
                     'Sport' : '../data/nyt/urls/sport.txt'}
 
-    # allPaths = {
-                # '../data/nyt/articles unclean/basketArt.txt' : '../data/nyt/urls/basketball.txt', 
-                # '../data/nyt/articles unclean/baseArt.txt': '../data/nyt/urls/baseball.txt', 
-                # '../data/nyt/articles unclean/hockeyArt.txt' : '../data/nyt/urls/hockey.txt', 
-                # '../data/nyt/articles unclean/footArt.txt' : '../data/nyt/urls/football.txt', 
-                # '../data/nyt/articles unclean/cricArt.txt' : '../data/nyt/urls/cricket.txt',
-                # '../data/nyt/articles unclean/sportArt.txt' : '../data/nyt/urls/sport.txt'}
+    allPaths = {
+                '../data/nyt/unclean/basketArt.txt' : '../data/nyt/urls/basketball.txt', 
+                '../data/nyt/unclean/baseArt.txt': '../data/nyt/urls/baseball.txt', 
+                '../data/nyt/unclean/hockeyArt.txt' : '../data/nyt/urls/hockey.txt', 
+                '../data/nyt/unclean/footArt.txt' : '../data/nyt/urls/football.txt', 
+                '../data/nyt/unclean/cricArt.txt' : '../data/nyt/urls/cricket.txt',
+                '../data/nyt/unclean/sportArt.txt' : '../data/nyt/urls/sport.txt'
+                }
     cleaned = {
-                '../data/nyt/articles unclean/basketArt.txt' : '../data/nyt/articles clean/basketball.txt', 
-                '../data/nyt/articles unclean/baseArt.txt': '../data/nyt/articles clean/baseball.txt', 
-                '../data/nyt/articles unclean/hockeyArt.txt' : '../data/nyt/articles clean/hockey.txt', 
-                '../data/nyt/articles unclean/footArt.txt' : '../data/nyt/articles clean/football.txt', 
-                '../data/nyt/articles unclean/cricArt.txt' : '../data/nyt/articles clean/cricket.txt',
-                '../data/nyt/articles unclean/sportArt.txt' : '../data/nyt/articles clean/sport.txt'}
+                '../data/nyt/unclean/basketArt.txt' : '../data/nyt/clean/basketball.txt', 
+                '../data/nyt/unclean/baseArt.txt': '../data/nyt/clean/baseball.txt', 
+                '../data/nyt/unclean/hockeyArt.txt' : '../data/nyt/clean/hockey.txt', 
+                '../data/nyt/unclean/footArt.txt' : '../data/nyt/clean/football.txt', 
+                '../data/nyt/unclean/cricArt.txt' : '../data/nyt/clean/cricket.txt',
+                '../data/nyt/unclean/sportArt.txt' : '../data/nyt/clean/sport.txt'
+                }
 
     # collect all the article urls
-    # for query, path in queryPath.items():
-        # collectUrls(query, path)
+    for query, path in queryPath.items():
+        collectUrls(query, path)
 
     # collect the actual articles
-    # for write, read in allPaths.items():
-        # collectArticles(read, write)
+    for write, read in allPaths.items():
+        collectArticles(read, write)
 
-    # TODO: Make sure to add better stop words in nltk_data
     # clean up all the articles
     for unclean, clean in cleaned.items():
         cleanup(unclean, clean)

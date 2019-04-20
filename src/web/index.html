@@ -11,22 +11,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- d3 js  -->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
-
     <!-- css  -->
     <link rel="stylesheet" href="styles.css">
 
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
 
-    <!-- script.js -->
-    <script type="module" src="script.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <!-- d3 js  -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="d3.layout.cloud.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
-<body>
+<body onload="drawCloud('../../data/wc-run.txt')">
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index.html">
@@ -36,94 +33,183 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="lang" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true" onclick="drawCloud('../../data/tw/wc-run.txt')">
                         Twitter
-                    </a>
+                        <span class="caret"></span>
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item">Basketball</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/tw/word_count/basketball/wc-run.txt')">Basketball</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Hockey</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/tw/word_count/hockey/wc-run.txt')">Hockey</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Football</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/tw/word_count/football/wc-run.txt')">Football</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Cricket</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/tw/word_count/cricket/wc-run.txt')">Cricket</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Baseball</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/tw/word_count/baseball/wc-run.txt')">Baseball</button>
                     </div>
                 </li>
                 <li class="nav-item dropdown ml-auto">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="lang" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true" onclick="drawCloud('../../data/nyt/wc-run.txt')">
                         New York Times
-                    </a>
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item">Basketball</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/nyt/word_count/sport/wc-run.txt')">Sport</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Hockey</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/nyt/word_count/basketball/wc-run.txt')">Basketball</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Football</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/nyt/word_count/hockey/wc-run.txt')">Hockey</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Cricket</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/nyt/word_count/football/wc-run.txt')">Football</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Baseball</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/nyt/word_count/cricket/wc-run.txt')">Cricket</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/nyt/word_count/baseball/wc-run.txt')">Baseball</button>
                     </div>
                 </li>
                 <li class="nav-item dropdown ml-auto">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="lang" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true" onclick="drawCloud('../../data/cc/wc-run.txt')">
                         Common Crawl
-                    </a>
+                    </button>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item">Bleacher Report</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/cc/bleacher/wc-run.txt')">Bleacher Report</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">CBS Sports</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/cc/cbs/wc-run.txt')">CBS Sports</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">ESPN</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/cc/espn/wc-run.txt')">ESPN</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Fox Sports</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/cc/fox/wc-run.txt')">Fox Sports</button>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">Sporting News</a>
+                        <button class="dropdown-item" type="button"
+                            onclick="drawCloud('../../data/cc/sporting/wc-run.txt')">Sporting News</button>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container-fluid">
-        <div id = "cloud"></div>
-        <div id = "cocloud"></div>
+        <div id="cloud"></div>
+        <div id="cocloud"></div>
+
         <script>
-            var lang = '';
+            // function to draw the word cloud
+            function drawCloud(path) {
+                // clear the document if there is stuff already there
+                $(document).ready(function () {
+                    $("button").click(function () {
+                        $("#cloud").empty();
+                    });
+                });
+                
+                //grab path to send to server
+                var jsonToSend = {
+                    "file": path,
+                };
 
-            $(".dropdown-menu li a").click(function () {
-                // $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-                // $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-                lang = $(this).text();
-                console.log(lang)
-            });
-
-            function run() {
-                //grab code inside textarea
-                var code = document.getElementById('code').value;
-                if (lang == '') {
-                    alert("Please select Language");
-                } else if (code == '') {
-                    alert("Please input your Code")
-                } else {
-                    var jsonToSend = {
-                        "language": lang,
-                        "code": code
-                    };
-                    var req = new XMLHttpRequest();
-                    req.open('POST', '/compAndRun', true);
-                    req.setRequestHeader("Content-type", "application/json");
-                    jsonToSend = JSON.stringify(jsonToSend);
-                    req.send(jsonToSend);
-                    req.onload = function () {
-                        var response = JSON.parse(req.responseText);
-                        document.getElementById('out').value = response.output;
-                    }
+                var req = new XMLHttpRequest();
+                req.open('POST', '/grabFile', true);
+                req.setRequestHeader("Content-type", "application/json");
+                jsonToSend = JSON.stringify(jsonToSend);
+                req.send(jsonToSend);
+                req.onload = function () {
+                    var text = JSON.parse(req.responseText);
+                    // generate the cloud
+                    cloudGen(text.text);
                 }
+            }
+
+            function cloudGen(text) {
+                // split the text into words and numbers
+                var textByLine = text.split("\n");
+                word_count = {};
+                temp = [];
+                word = "";
+                count = 0;
+                for (i = 0; i < textByLine.length; i++) {
+                    temp = textByLine[i].split(" ");
+                    word_count[temp[0]] = temp[1];
+                }
+                // pick out the top 30 words
+                var top = {};
+                var count = 0;
+                for (var key in word_count) {
+                    if (count < 30) {
+                        top[key] = word_count[key]
+                    }
+                    count++;
+                }
+
+                // draw cloud on the cloud div
+                var svgloc = "#cloud"
+                var w = $(document).width();
+                var h = $(document).height();
+                var fill = d3.scale.category20();
+                var word_entries = d3.entries(top);
+
+                var wordScale = d3.scale.linear()
+                    .domain([0, d3.max(word_entries, function (d) {
+                        return d.value;
+                    })])
+                    .range([10, 100]);
+
+                d3.layout.cloud().size([w, h])
+                    .words(word_entries)
+                    .fontSize(function (d) {
+                        return wordScale(+d.value);
+                    })
+                    .text(function (d) {
+                        return d.key;
+                    })
+                    .rotate(function () {
+                        return ~~(Math.random()) * 90;
+                    })
+                    .font("Impact")
+                    .on("end", draw)
+                    .start();
+
+                function draw(words) {
+                    d3.select(svgloc).append("svg")
+                        .attr("width", w)
+                        .attr("height", h)
+                        .append("g")
+                        .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")")
+                        .selectAll("text")
+                        .data(words)
+                        .enter().append("text")
+                        .style("font-size", function (d) {
+                            return wordScale(d.value) + "px";
+                        })
+                        .style("font-family", "Impact")
+                        .style("fill", function (d, i) {
+                            return fill(i);
+                        })
+                        .attr("text-anchor", "middle")
+                        .attr("transform", function (d) {
+                            return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                        })
+                        .text(function (d) {
+                            return d.text;
+                        });
+                }
+                d3.layout.cloud().stop();
             }
         </script>
     </div>

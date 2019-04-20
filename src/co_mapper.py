@@ -15,14 +15,14 @@ for line in sys.stdin:
 # Loop through array, at each word, look at NEIGHBORS
 for i in range(len(words)):
     if i == 0:
-        tup = ((words[i], words[i+1]), 1)
+        tup = ((words[i] + "|" + words[i+1]), 1)
         wordTupCounts.append(tup);
     elif i == len(words)-1:
-        tup = ((words[i], words[i-1]), 1)
+        tup = ((words[i] + "|" + words[i-1]), 1)
         wordTupCounts.append(tup);
     else:
-        tup1 = ((words[i], words[i-1]), 1)
-        tup2 = ((words[i], words[i+1]), 1)
+        tup1 = ((words[i] + "|" + words[i-1]), 1)
+        tup2 = ((words[i] + "|" + words[i+1]), 1)
         wordTupCounts.append(tup1)
         wordTupCounts.append(tup2)
 

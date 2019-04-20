@@ -10,9 +10,9 @@ def cleanup(unclean, clean):
     count = 1
     stop_words = set(stopwords.words('english'))
 
-    with open(os.path.join(unclean)) as unclean:
+    with open(os.path.join(unclean)) as unClean:
         # read line by line of the unclean data
-        for line in unclean:
+        for line in unClean:
             wordsToWrite = []
 
             #  use nltk to tokenize every word in current line
@@ -28,25 +28,25 @@ def cleanup(unclean, clean):
                             wordsToWrite.append(word)
 
             # write the cleaned up words to txt 
-            with open(os.path.join(clean), 'a') as clean:
+            with open(os.path.join(clean), 'a') as cleanedUp:
                 
                 # just checking one more time for stop words
                 for cleanWord in wordsToWrite:
-                    if not clean in stop_words:
-                        clean.write(cleanWord + " ")
-            clean.close()
+                    if not cleanedUp in stop_words:
+                        cleanedUp.write(cleanWord + " ")
+            cleanedUp.close()
 
             # prints for sanity
             if (count % 1000 == 0):
                 print ('cleaned %d lines' % count)
             count += 1            
-    unclean.close()
+    unClean.close()
     print("\n\n\n ============ DONE CLEANING " + clean + " ============\n\n\n")
 
 def main():
     # path of the txt file, path of where to save the txt file 
     # CALL THIS:
-    cleanup( waaarreehhhh, huuuuuuhhhhhhh)
+    cleanup( '../data/demo/pg345.txt' , '../data/demo/clean.txt')
 
 if __name__ == "__main__":
     main()

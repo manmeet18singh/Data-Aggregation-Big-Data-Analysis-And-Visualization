@@ -18,7 +18,7 @@ Import the VM appliance for Hadoop infrastructure and test the basic commands wi
 Load the data aggregated in Phase 1 into the VM, two directories: TwitterData and NewsData. Each directory can have many files of data.
 
 ### Phase 4 
-Code and execute MapReduce word count on each of the data sets. Map will clean and parse the data sets into words, remove stop words, and reduce will count the useful words. Twitterdata -> TwitterWords and NewsData -> NewsWords. Review and visually compare the output for representative words about the topic. You may have to change the search word, obtain new sets of data that may comparable sets of output words. You can use Python or java for your coding language.
+Code and execute MapReduce word count on each of the data sets using AWS Elastic MapReduce (EMR) and S3. Map will clean and parse the data sets into words, remove stop words, and reduce will count the useful words. Twitterdata -> TwitterWords and NewsData -> NewsWords. Review and visually compare the output for representative words about the topic. You may have to change the search word, obtain new sets of data that may comparable sets of output words. You can use Python or java for your coding language.
 
 ### Phase 5
 Visualize each of the outputs using d3.js and on a simple web page that you create for this lab. 
